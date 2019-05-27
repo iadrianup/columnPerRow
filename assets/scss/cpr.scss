@@ -1,0 +1,87 @@
+// CONFIGS
+$grid-breakpoints: (
+	xs: 0,
+	sm: 576px,
+	md: 768px,
+	lg: 992px,
+	xl: 1200px
+);
+
+$grid-columns: 12;
+$grid-gutter-width: 30px;
+
+// MIXINS
+@function breakpoint-infix($name, $breakpoints: $grid-breakpoints) {
+	@return if(breakpoint-min($name, $breakpoints) == null, '', '-#{$name}');
+}
+
+@mixin media-breakpoint-up($name, $breakpoints: $grid-breakpoints) {
+	$min: breakpoint-min($name, $breakpoints);
+	@if $min {
+		@media (min-width: $min) {
+			@content;
+		}
+	} @else {
+		@content;
+	}
+}
+
+@function breakpoint-min($name, $breakpoints: $grid-breakpoints) {
+	$min: map-get($breakpoints, $name);
+	@return if($min != 0, $min, null);
+}
+
+@mixin make-cpr-grid($gutter: $grid-gutter-width) {
+	display: flex;
+	flex-wrap: wrap;
+	margin-right: -$gutter / 2;
+	margin-left: -$gutter / 2;
+}
+
+@mixin make-cpr-col($size) {
+	flex: 0 0 percentage(1 / $size);
+	// Add a `max-width` to ensure content within each column does not blow out
+	// the width of the column. Applies to IE10+ and Firefox. Chrome and Safari
+	// do not appear to require this.
+	max-width: percentage(1 / $size);
+}
+
+@mixin make-cpr-grid-columns(
+	$columns: $grid-columns,
+	$gutter: $grid-gutter-width,
+	$breakpoints: $grid-breakpoints
+) {
+	// Common properties for all breakpoints
+	%grid-column {
+		position: relative;
+		width: 100%;
+		padding-right: $gutter / 2;
+		padding-left: $gutter / 2;
+	}
+
+	@each $breakpoint in map-keys($breakpoints) {
+		$infix: breakpoint-infix($breakpoint, $breakpoints);
+
+		// Allow columns to stretch full width below their breakpoints
+		@for $i from 1 through $columns {
+			.cpr-grid.cpr#{$infix}-#{$i} .cpr-column {
+				@extend %grid-column;
+			}
+		}
+
+		@include media-breakpoint-up($breakpoint, $breakpoints) {
+			@for $i from 1 through $columns {
+				.cpr-grid.cpr#{$infix}-#{$i} .cpr-column {
+					@include make-cpr-col($i);
+				}
+			}
+		}
+	}
+}
+
+// CSS
+.cpr-grid {
+	@include make-cpr-grid();
+}
+
+@include make-cpr-grid-columns();
