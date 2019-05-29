@@ -1,6 +1,6 @@
 // CONFIGS
 $grid-breakpoints: (
-	xs: 0,
+	xs: 0px,
 	sm: 576px,
 	md: 768px,
 	lg: 992px,
@@ -10,11 +10,13 @@ $grid-breakpoints: (
 $grid-columns: 12;
 $grid-gutter-width: 30px;
 
-// MIXINS
-@function breakpoint-infix($name, $breakpoints: $grid-breakpoints) {
-	@return if(breakpoint-min($name, $breakpoints) == null, '', '-#{$name}');
+// FUNCTIONS
+@function breakpoint-min($name, $breakpoints: $grid-breakpoints) {
+	$min: map-get($breakpoints, $name);
+	@return if($min != 0, $min, null);
 }
 
+// MIXINS
 @mixin media-breakpoint-up($name, $breakpoints: $grid-breakpoints) {
 	$min: breakpoint-min($name, $breakpoints);
 	@if $min {
@@ -24,11 +26,6 @@ $grid-gutter-width: 30px;
 	} @else {
 		@content;
 	}
-}
-
-@function breakpoint-min($name, $breakpoints: $grid-breakpoints) {
-	$min: map-get($breakpoints, $name);
-	@return if($min != 0, $min, null);
 }
 
 @mixin make-cpr-grid($gutter: $grid-gutter-width) {
@@ -60,18 +57,16 @@ $grid-gutter-width: 30px;
 	}
 
 	@each $breakpoint in map-keys($breakpoints) {
-		$infix: breakpoint-infix($breakpoint, $breakpoints);
-
 		// Allow columns to stretch full width below their breakpoints
 		@for $i from 1 through $columns {
-			.cpr-grid.cpr#{$infix}-#{$i} .cpr-column {
+			.cpr-grid.cpr-#{$breakpoint}-#{$i} .cpr-column {
 				@extend %grid-column;
 			}
 		}
 
 		@include media-breakpoint-up($breakpoint, $breakpoints) {
 			@for $i from 1 through $columns {
-				.cpr-grid.cpr#{$infix}-#{$i} .cpr-column {
+				.cpr-grid.cpr-#{$breakpoint}-#{$i} .cpr-column {
 					@include make-cpr-col($i);
 				}
 			}
@@ -80,8 +75,18 @@ $grid-gutter-width: 30px;
 }
 
 // CSS
+:root {
+	@each $breakpoint, $value in $grid-breakpoints {
+		--cpr-#{$breakpoint}: #{$value};
+	}
+}
+
 .cpr-grid {
 	@include make-cpr-grid();
 }
 
 @include make-cpr-grid-columns();
+
+.cpr-grid.cpr-transitions .cpr-column {
+	transition: all 0.3s ease-in-out;
+}
