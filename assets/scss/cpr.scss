@@ -8,7 +8,7 @@ $grid-breakpoints: (
 );
 
 $grid-columns: 12;
-$grid-gutter-width: 30px;
+$grid-gutter-width: 15px;
 
 // FUNCTIONS
 @function breakpoint-min($name, $breakpoints: $grid-breakpoints) {
