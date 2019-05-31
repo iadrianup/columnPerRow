@@ -83,10 +83,27 @@ $grid-gutter-width: 15px;
 
 .cpr-grid {
 	@include make-cpr-grid();
+
+	&.cpr-transitions .cpr-column {
+		transition: all 0.3s ease-in-out;
+	}
 }
 
 @include make-cpr-grid-columns();
 
-.cpr-grid.cpr-transitions .cpr-column {
-	transition: all 0.3s ease-in-out;
+.cpr-controls {
+	padding-left: 0;
+	margin-top: 0;
+	margin-bottom: 0;
+	box-sizing: border-box;
+	list-style: none;
+
+	& > li {
+		display: inline-block;
+		list-style: none;
+
+		&:not(:last-child) {
+			margin-right: 0.5rem;
+		}
+	}
 }

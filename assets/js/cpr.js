@@ -1,5 +1,12 @@
-class ColumnsPerRow {
+class UI {
+	static buildControls(config) {
+		console.log(config);
+	}
+}
+
+class ColumnsPerRow extends UI {
 	constructor(userConfig) {
+		super();
 		let defaults = this.getDefaults();
 		let config = this.mergeConfig(defaults, userConfig);
 
@@ -59,7 +66,7 @@ class ColumnsPerRow {
 	}
 
 	init() {
-		console.log(this.config);
+		UI.buildControls(this.config);
 	}
 
 	static updateGrid(control) {
@@ -94,7 +101,7 @@ if (cprControls.length) {
 }
 
 const cprGrid = new ColumnsPerRow({
-	container: '.cpr-gallery',
+	container: '.cpr-gallery-2',
 	controls: {
 		container: '.cpr-custom-controls'
 	},
