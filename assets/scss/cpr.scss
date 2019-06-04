@@ -1,4 +1,6 @@
-// CONFIGS
+/*
+* - CONFIGS - 
+*/
 $grid-breakpoints: (
 	xs: 0px,
 	sm: 576px,
@@ -10,13 +12,17 @@ $grid-breakpoints: (
 $grid-columns: 12;
 $grid-gutter-width: 15px;
 
-// FUNCTIONS
+/*
+* - FUNCTIONS - 
+*/
 @function breakpoint-min($name, $breakpoints: $grid-breakpoints) {
 	$min: map-get($breakpoints, $name);
 	@return if($min != 0, $min, null);
 }
 
-// MIXINS
+/*
+* - MIXINS - 
+*/
 @mixin media-breakpoint-up($name, $breakpoints: $grid-breakpoints) {
 	$min: breakpoint-min($name, $breakpoints);
 	@if $min {
@@ -74,13 +80,32 @@ $grid-gutter-width: 15px;
 	}
 }
 
-// CSS
+// [converter] $parent hack
+@mixin responsive-visibility($parent) {
+	#{$parent} {
+		display: block !important;
+	}
+}
+
+// [converter] $parent hack
+@mixin responsive-invisibility($parent) {
+	#{$parent} {
+		display: none !important;
+	}
+}
+
+/*
+* - CSS - 
+*/
+
+/* - Root -*/
 :root {
 	@each $breakpoint, $value in $grid-breakpoints {
 		--cpr-#{$breakpoint}: #{$value};
 	}
 }
 
+/* - Grid -*/
 .cpr-grid {
 	@include make-cpr-grid();
 
@@ -91,6 +116,7 @@ $grid-gutter-width: 15px;
 
 @include make-cpr-grid-columns();
 
+/* - Controls -*/
 .cpr-controls {
 	padding-left: 0;
 	margin-top: 0;
@@ -106,4 +132,29 @@ $grid-gutter-width: 15px;
 			margin-right: 0.5rem;
 		}
 	}
+}
+
+/* - Visivility utilities -*/
+@each $breakpoint, $value in $grid-breakpoints {
+	@include responsive-invisibility('.visible-#{$breakpoint}');
+}
+
+@media (max-width: map-get($grid-breakpoints, 'sm')) {
+	@include responsive-visibility('.visible-xs');
+}
+
+@media (min-width: map-get($grid-breakpoints, 'sm')) and (max-width: map-get($grid-breakpoints, 'md')) {
+	@include responsive-visibility('.visible-sm');
+}
+
+@media (min-width: map-get($grid-breakpoints, 'md')) and (max-width: map-get($grid-breakpoints, 'lg')) {
+	@include responsive-visibility('.visible-md');
+}
+
+@media (min-width: map-get($grid-breakpoints, 'lg')) and (max-width: map-get($grid-breakpoints, 'xl')) {
+	@include responsive-visibility('.visible-lg');
+}
+
+@media (min-width: map-get($grid-breakpoints, 'xl')) {
+	@include responsive-visibility('.visible-xl');
 }
