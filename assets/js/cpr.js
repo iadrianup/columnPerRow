@@ -15,22 +15,47 @@ class ColumnsPerRow {
 	}
 
 	buildControls() {
-		const controls = this.config.controls;
-		const breakpoints = controls.breakpoints;
-		Object.keys(breakpoints).forEach(breakpoint => {
-			const breakpointType = typeof breakpoints[breakpoint];
-			if (breakpointType !== null) {
-			}
-		});
+		const {
+			controls: { customHtml }
+		} = this.config;
+
+		if (!customHtml) {
+			const {
+				controls: { container },
+				controls: { breakpoints }
+			} = this.config;
+
+			const controlsWrapper = document.createElement('ul');
+			let items = [];
+
+			controlsWrapper.classList.add('cpr-controls');
+
+			Object.keys(breakpoints).forEach(breakpoint => {
+				const breakpointType = typeof breakpoints[breakpoint];
+				if (breakpointType !== null) {
+					breakpoints[breakpoint].opts.forEach(opt => {
+						if (!items.includes(opt)) items.push(opt);
+					});
+				}
+			});
+
+			items.sort();
+
+			const controlsHTML = items.forEach(item => {});
+
+			/* <a href="#cpr_gallery" class="cpr-control" role="button" title="1 columns per row"
+                                    aria-controls="cpr_controls" data-cpr="1">1</a> */
+		}
 	}
 
 	getDefaults() {
 		const defaults = {
-			container: '.cpr-container', // required
+			container: '.cpr-container', // Optional String
 			controls: {
-				container: '.cpr-controls', //String
-				customHtml: null, //String
+				container: null, // String
+				customHtml: false, // Boolean
 				breakpoints: {
+					xs: null,
 					sm: {
 						opts: [1, 2],
 						default: 2
@@ -42,9 +67,9 @@ class ColumnsPerRow {
 					},
 					xl: null
 				}
-			}, // optional
-			transitions: false, // optional Bool
-			data: null // optional Array
+			}, // Optional
+			transitions: false, // Optional Bool
+			data: null // Optional Array
 		};
 
 		return defaults;
@@ -111,8 +136,12 @@ const cprGrid = new ColumnsPerRow({
 	container: '.cpr-gallery', // required
 	controls: {
 		container: '.cpr-custom-controls', //String
-		// customHtml: null, //String
+		customHtml: false, //String
 		breakpoints: {
+			xs: {
+				opts: [1],
+				default: 1
+			},
 			sm: {
 				opts: [2],
 				default: 2
