@@ -83,7 +83,7 @@ $grid-gutter-width: 15px;
 // [converter] $parent hack
 @mixin responsive-visibility($parent) {
 	#{$parent} {
-		display: block !important;
+		display: inline-block !important;
 	}
 }
 
