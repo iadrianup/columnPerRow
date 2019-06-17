@@ -1,8 +1,9 @@
 const cprGrid = new ColumnsPerRow({
 	container: '.cpr-gallery', // required String
 	controls: {
-		container: '.cpr-custom-controls', // String
 		customHtml: false, // String
+		container: '.cpr-custom-controls', // String
+		label: 'Ver:', // String
 		breakpoints: {
 			xs: {
 				opts: [1, 2],

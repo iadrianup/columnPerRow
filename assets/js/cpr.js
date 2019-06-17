@@ -19,8 +19,7 @@ class ColumnsPerRow {
 		if (!customHtml) {
 			const {
 				container,
-				controls: { container: containerControls },
-				controls: { breakpoints }
+				controls: { container: containerControls, label, breakpoints }
 			} = this.config;
 
 			const controlsWrapper = document.createElement('ul');
@@ -28,6 +27,10 @@ class ColumnsPerRow {
 
 			const containerEl = document.querySelector(container);
 			const containerId = containerEl.getAttribute('id');
+
+			const currentBreakpoint = ColumnsPerRow.getCurrentBreakpoint();
+			const defaultValueInBp = this.config.controls.breakpoints[currentBreakpoint]
+				.default;
 
 			let controls = [];
 
@@ -51,10 +54,11 @@ class ColumnsPerRow {
 
 			controls.sort();
 
-			let controlsHTML = '<li>Ver:</li>';
+			let controlsHTML = '<li>' + label + '</li>';
 
 			controls.forEach(control => {
 				let classes = control.classes.replace(/\s+$/, '');
+				classes += control.opt === defaultValueInBp ? ' active' : '';
 				controlsHTML += `
                 <li class="${classes}"><a href="#${containerId}" class="cpr-control" role="button" title="${
 					control.opt
@@ -111,6 +115,7 @@ class ColumnsPerRow {
 			cprControls.forEach(control =>
 				control.addEventListener('click', e => {
 					e.preventDefault();
+					ColumnsPerRow.updateControlClasses(control, cprControls);
 					ColumnsPerRow.updateGrid(
 						control,
 						ColumnsPerRow.getCurrentBreakpoint()
@@ -124,20 +129,30 @@ class ColumnsPerRow {
 		const defaults = {
 			container: '.cpr-container', // Optional String
 			controls: {
-				container: null, // String
 				customHtml: false, // Boolean
+				container: null, // String,
+				label: 'Ver:',
 				breakpoints: {
-					xs: null,
+					xs: {
+						opts: [1, 2],
+						default: 1
+					},
 					sm: {
 						opts: [1, 2],
 						default: 2
 					},
-					md: null,
-					lg: {
+					md: {
 						opts: [3, 4],
 						default: 3
 					},
-					xl: null
+					lg: {
+						opts: [3, 4],
+						default: 4
+					},
+					xl: {
+						opts: [3, 4, 5],
+						default: 4
+					}
 				}
 			}, // Optional
 			transitions: false, // Optional Bool
@@ -174,7 +189,7 @@ class ColumnsPerRow {
 	}
 
 	static getCurrentBreakpoint() {
-		let currentSize = window.screen.width,
+		let currentSize,
 			xs = getComputedStyle(document.documentElement).getPropertyValue('--cpr-xs'),
 			sm = getComputedStyle(document.documentElement).getPropertyValue('--cpr-sm'),
 			md = getComputedStyle(document.documentElement).getPropertyValue('--cpr-md'),
@@ -206,6 +221,15 @@ class ColumnsPerRow {
 		}
 
 		return currentSize;
+	}
+
+	static updateControlClasses(control, cprControls) {
+		if (cprControls.length) {
+			cprControls.forEach(control =>
+				control.parentElement.classList.remove('active')
+			);
+		}
+		control.parentElement.classList.add('active');
 	}
 
 	static updateGrid(control, breakpoint) {
