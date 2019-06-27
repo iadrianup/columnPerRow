@@ -22,8 +22,8 @@ const cprGrid = new ColumnsPerRow({
 				default: 3
 			},
 			xl: {
-				opts: [3, 5, 6],
-				default: 3
+				opts: [4, 5, 6],
+				default: 4
 			}
 		}
 	}, // optional
