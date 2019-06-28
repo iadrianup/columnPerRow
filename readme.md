@@ -11,22 +11,22 @@ ColumnsPerRow JS is a JavaScript plugin that will help you to build equal column
 ## Demo
 The plugin demo is now using Bootstrap 4 but just for basic styling and show how the plugin works, but it is not required for the plugin to work, you can use this plugin with or without using any framework.
 
-[Click here to go to the Demo](http://www.google.com.mx 'ColumnsPerRow JS Demo')
+[Click here to go to the Demo](https://iadrianup.github.io/columnsPerRow/ 'ColumnsPerRow JS Demo')
 
 
 ## Install (Dist / Build)
 Files are located in assets/ folder but you can also download them from here:
 * Development
-  * [cpr.min.css](http://www.google.com.mx)
-  * [cpr.js](http://www.google.com.mx)
+  * [cpr.min.css](https://raw.githubusercontent.com/iadrianup/columnsPerRow/master/assets/css/cpr.min.css)
+  * [cpr.js](https://raw.githubusercontent.com/iadrianup/columnsPerRow/master/assets/js/cpr.js)
 * Production
-  * [cpr.min.css](http://www.google.com.mx)
-  * [cpr.min.js](http://www.google.com.mx) 
+  * [cpr.min.css](https://raw.githubusercontent.com/iadrianup/columnsPerRow/master/assets/css/cpr.min.css)
+  * [cpr.min.js](https://raw.githubusercontent.com/iadrianup/columnsPerRow/master/assets/js/cpr.min.js) 
 
 I also include source file (SASS) available for download in case you want to work with them.
 * SASS (.scss) file
-  * [cpr.scss](http://www.google.com.mx) 
-  * [_cpr_core.scss](http://www.google.com.mx) 
+  * [cpr.scss](https://raw.githubusercontent.com/iadrianup/columnsPerRow/master/assets/scss/cpr.scss) 
+  * [_cpr_core.scss](https://raw.githubusercontent.com/iadrianup/columnsPerRow/master/assets/scss/_cpr_core.scss) 
 
 It is important to mention that when using SASS files it is easier to custom some aspects of the plugin, for example:
 * Grid breakpoints (screen size limits)
