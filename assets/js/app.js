@@ -1,31 +1,30 @@
-const cprGrid = new ColumnsPerRow({
+new ColumnsPerRow({
 	container: '.cpr-gallery', // required String
+	transitions: true, // optional Bool
 	controls: {
-		customHtml: false, // String
 		container: '.cpr-custom-controls', // String
-		label: 'Ver:', // String
+		label: 'Ver # productos:', // String
 		breakpoints: {
 			xs: {
-				opts: [1, 2],
-				default: 1
-			},
+				opts: [1, 2], // Array
+				default: 1 // Number
+			}, // Object
 			sm: {
-				opts: [2, 3],
-				default: 2
-			},
+				opts: [2, 3], // Array
+				default: 2 // Number
+			}, // Object
 			md: {
-				opts: [3, 4],
-				default: 3
-			},
+				opts: [3, 4], // Array
+				default: 3 // Number
+			}, // Object
 			lg: {
-				opts: [3, 4, 5],
-				default: 3
-			},
+				opts: [3, 4, 5], // Array
+				default: 3 // Number
+			}, // Object
 			xl: {
-				opts: [4, 5, 6],
-				default: 4
-			}
-		}
-	}, // optional
-	transitions: true // optional Bool
+				opts: [4, 5, 6], // Array
+				default: 4 // Number
+			} // Object
+		} // Object
+	} // optionals
 });

@@ -128,10 +128,12 @@ class ColumnsPerRow {
 	getDefaults() {
 		const defaults = {
 			container: '.cpr-container', // Optional String
+			transitions: false, // Optional Bool
+			data: null, // Optional Array
 			controls: {
 				customHtml: false, // Boolean
 				container: null, // String,
-				label: 'Ver:',
+				label: '# Items:',
 				breakpoints: {
 					xs: {
 						opts: [1, 2],
@@ -154,9 +156,7 @@ class ColumnsPerRow {
 						default: 4
 					}
 				}
-			}, // Optional
-			transitions: false, // Optional Bool
-			data: null // Optional Array
+			} // Optional
 		};
 
 		return defaults;
