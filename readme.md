@@ -11,7 +11,7 @@ ColumnsPerRow JS is a JavaScript plugin that will help you to build equal column
 ## Demo
 The plugin demo is now using Bootstrap 4 but just for basic styling and show how the plugin works, but it is not required for the plugin to work, you can use this plugin with or without using any framework.
 
-[Click here to go to the Demo](https://iadrianup.github.io/columnsPerRow/ 'ColumnsPerRow JS Demo')
+<a href="https://iadrianup.github.io/columnsPerRow/" target="_blank" title="ColumnsPerRow JS Demo">Click here to go to the Demo</a>
 
 
 ## Install (Dist / Build)
