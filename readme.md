@@ -17,16 +17,16 @@ The plugin demo is now using Bootstrap 4 but just for basic styling and show how
 ## Install (Dist / Build)
 Files are located in assets/ folder but you can also download them from here:
 * Development
-  * [cpr.min.css](https://raw.githubusercontent.com/iadrianup/columnsPerRow/master/assets/css/cpr.min.css)
-  * [cpr.js](https://raw.githubusercontent.com/iadrianup/columnsPerRow/master/assets/js/cpr.js)
+  * <a href="https://raw.githubusercontent.com/iadrianup/columnsPerRow/master/assets/css/cpr.min.css" target="_blank">cpr.min.css</a>
+  * <a href="https://raw.githubusercontent.com/iadrianup/columnsPerRow/master/assets/js/cpr.js" target="_blank">cpr.js</a>
 * Production
-  * [cpr.min.css](https://raw.githubusercontent.com/iadrianup/columnsPerRow/master/assets/css/cpr.min.css)
-  * [cpr.min.js](https://raw.githubusercontent.com/iadrianup/columnsPerRow/master/assets/js/cpr.min.js) 
+  * <a href="https://raw.githubusercontent.com/iadrianup/columnsPerRow/master/assets/css/cpr.min.css" target="_blank">cpr.min.css</a>
+  * <a href="https://raw.githubusercontent.com/iadrianup/columnsPerRow/master/assets/js/cpr.min.js" target="_blank">cpr.min.js</a>
 
 I also include source file (SASS) available for download in case you want to work with them.
 * SASS (.scss) file
-  * [cpr.scss](https://raw.githubusercontent.com/iadrianup/columnsPerRow/master/assets/scss/cpr.scss) 
-  * [_cpr_core.scss](https://raw.githubusercontent.com/iadrianup/columnsPerRow/master/assets/scss/_cpr_core.scss) 
+  * <a href="https://raw.githubusercontent.com/iadrianup/columnsPerRow/master/assets/scss/cpr.scss" target="_blank">cpr.scss</a>
+  * <a href="https://raw.githubusercontent.com/iadrianup/columnsPerRow/master/assets/scss/_cpr_core.scss" target="_blank">_cpr_core.scss</a>
 
 It is important to mention that when using SASS files it is easier to custom some aspects of the plugin, for example:
 * Grid breakpoints (screen size limits)
