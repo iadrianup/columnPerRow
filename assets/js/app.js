@@ -3,7 +3,7 @@ new ColumnsPerRow({
 	transitions: true, // optional Bool
 	controls: {
 		container: '.cpr-custom-controls', // String
-		label: 'Ver # productos:', // String
+		label: '# Items per row:', // String
 		breakpoints: {
 			xs: {
 				opts: [1, 2], // Array
